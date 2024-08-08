@@ -1,10 +1,3 @@
-//
-//  ListViewController.swift
-//  Compare
-//
-//  Created by Muhammad Hanif Sugiyanto on 07/08/24.
-//
-
 import UIKit
 
 enum Page: String, CaseIterable {
@@ -15,7 +8,7 @@ enum Page: String, CaseIterable {
     var title: String {
         switch self {
         case .compositionalLayout:
-            "UI - Compositional Layout"
+            "UI - Compositional Layout - Diffing"
         case .structuredConcurrency:
             "Structured Concurrency Demo"
         case .diffing:

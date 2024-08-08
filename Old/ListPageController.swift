@@ -1,21 +1,14 @@
-//
-//  ListPageController.swift
-//  Old
-//
-//  Created by Muhammad Hanif Sugiyanto on 07/08/24.
-//
-
 import UIKit
 
 enum Page: String, CaseIterable {
-    case compositionalLayout
+    case gridCollectionLayout
     case structuredConcurrency
     case diffing
     
     var title: String {
         switch self {
-        case .compositionalLayout:
-            "UI - Compositional Layout"
+        case .gridCollectionLayout:
+            "UI - Grid Collection Layout - Diffing"
         case .structuredConcurrency:
             "Structured Concurrency Demo"
         case .diffing:
@@ -51,7 +44,7 @@ final class ListPageController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let page = data[indexPath.row].rawValue
         switch Page(rawValue: page) {
-        case .compositionalLayout:
+        case .gridCollectionLayout:
             self.navigationController?.pushViewController(GridLayoutViewController(), animated: true)
         case .diffing: break
         default: break

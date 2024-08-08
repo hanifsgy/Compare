@@ -1,10 +1,3 @@
-//
-//  AppDelegate.swift
-//  Old
-//
-//  Created by Muhammad Hanif Sugiyanto on 07/08/24.
-//
-
 import UIKit
 
 @main

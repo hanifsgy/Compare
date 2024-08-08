@@ -1,27 +1,41 @@
 import UIKit
 import DifferenceKit
 
-enum Section {
-  case main
+enum SectionGrid: CaseIterable {
+    case section1
+    case section2
 }
 
-struct Item: Differentiable {
-    var id: Int
-    var value: Int
+struct SectionedItems: DifferentiableSection {
+    var model: SectionGrid
+    var elements: [Item]
     
-    var differenceIdentifier: Int {
-        return id
+    var differenceIdentifier: SectionGrid {
+        return model
     }
     
-    func isContentEqual(to source: Item) -> Bool {
-        return value == source.value
+    func isContentEqual(to source: SectionedItems) -> Bool {
+        return model == source.model
+    }
+    
+    init<C>(source: SectionedItems, elements: C) where C : Collection, C.Element == Item {
+        self.model = source.model
+        self.elements = Array(elements)
+    }
+    
+    init(model: SectionGrid, elements: [Item]) {
+        self.model = model
+        self.elements = elements
     }
 }
 
-class GridLayoutViewController: UIViewController {
+final class MultipleSectionGridViewController: UIViewController {
     
     var collectionView: UICollectionView!
-    private var items: [Item] = Array(1...5_000).map { Item(id: $0, value: $0) }
+    private var items: [SectionedItems] = [
+        SectionedItems(model: .section1, elements: Array(1...50).map { Item(id: $0, value: $0) }),
+        SectionedItems(model: .section2, elements: Array(51...100).map { Item(id: $0, value: $0) })
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,21 +45,20 @@ class GridLayoutViewController: UIViewController {
     
     private func setupNavigationBar() {
         let shuffleButton = UIBarButtonItem(title: "Shuffle", style: .plain, target: self, action: #selector(shuffleItems))
-        let multipleSection = UIBarButtonItem(title: "Sectioned Item", style: .plain, target: self, action: #selector(sectionedItems))
-        navigationItem.rightBarButtonItems = [multipleSection, shuffleButton]
+        navigationItem.rightBarButtonItem = shuffleButton
     }
     
     @objc private func shuffleItems() {
         let oldItems = items
-        items.shuffle()
+        items = items.map { section in
+            var newSection = section
+            newSection.elements.shuffle()
+            return newSection
+        }
         let changeset = StagedChangeset(source: oldItems, target: items)
         collectionView.reload(using: changeset) { data in
             self.items = data
         }
-    }
-    
-    @objc private func sectionedItems() {
-        self.navigationController?.pushViewController(MultipleSectionGridViewController(), animated: true)
     }
     
     private func setupCollectionView() {
@@ -59,29 +72,30 @@ class GridLayoutViewController: UIViewController {
     }
     
     private func createLayout() -> UICollectionViewLayout {
-      let layout = UICollectionViewFlowLayout()
-      layout.itemSize = CGSize(width: view.bounds.width / 4 - 8, height: view.bounds.width / 4 - 8)
-      layout.minimumInteritemSpacing = 4
-      layout.minimumLineSpacing = 4
-      return layout
+        let layout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: view.bounds.width / 4 - 8, height: view.bounds.width / 4 - 8)
+        layout.minimumInteritemSpacing = 4
+        layout.minimumLineSpacing = 4
+        return layout
     }
 }
 
-extension GridLayoutViewController: UICollectionViewDataSource {
+extension MultipleSectionGridViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return items.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return items.count
+        return items[section].elements.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "labelCell", for: indexPath) as? LabelCell else {
             fatalError()
         }
-        cell.textLabel.text = "\(items[indexPath.item])"
-        cell.backgroundColor = .systemOrange
+        let item = items[indexPath.section].elements[indexPath.item]
+        cell.textLabel.text = "\(item.value)"
+        cell.backgroundColor = .systemBlue
         return cell
     }
 }

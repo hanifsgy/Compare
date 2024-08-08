@@ -19,6 +19,8 @@
 		02F3778B2C63CAD500D7C0B1 /* ListPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3778A2C63CAD500D7C0B1 /* ListPageController.swift */; };
 		02F377902C63CC3C00D7C0B1 /* GridLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3778F2C63CC3C00D7C0B1 /* GridLayoutViewController.swift */; };
 		02F377932C63CD3A00D7C0B1 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02F377922C63CD3A00D7C0B1 /* DifferenceKit */; };
+		02F377962C64745C00D7C0B1 /* MultipleSectionGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F377952C64745C00D7C0B1 /* MultipleSectionGridViewController.swift */; };
+		02F377982C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F377972C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,8 @@
 		02F3778A2C63CAD500D7C0B1 /* ListPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListPageController.swift; sourceTree = "<group>"; };
 		02F3778F2C63CC3C00D7C0B1 /* GridLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridLayoutViewController.swift; sourceTree = "<group>"; };
 		02F377942C63D3D600D7C0B1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		02F377952C64745C00D7C0B1 /* MultipleSectionGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSectionGridViewController.swift; sourceTree = "<group>"; };
+		02F377972C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSectionCompositionalLayout.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				02F377862C63C4B400D7C0B1 /* CompositionalLayout.swift */,
+				02F377972C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -117,6 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				02F3778F2C63CC3C00D7C0B1 /* GridLayoutViewController.swift */,
+				02F377952C64745C00D7C0B1 /* MultipleSectionGridViewController.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -228,6 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F3775A2C63C37E00D7C0B1 /* AppDelegate.swift in Sources */,
+				02F377982C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift in Sources */,
 				02F3775C2C63C37E00D7C0B1 /* SceneDelegate.swift in Sources */,
 				02F377892C63C56B00D7C0B1 /* ListViewController.swift in Sources */,
 				02F377872C63C4B400D7C0B1 /* CompositionalLayout.swift in Sources */,
@@ -238,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02F377962C64745C00D7C0B1 /* MultipleSectionGridViewController.swift in Sources */,
 				02F377742C63C3FA00D7C0B1 /* AppDelegate.swift in Sources */,
 				02F3778B2C63CAD500D7C0B1 /* ListPageController.swift in Sources */,
 				02F377902C63CC3C00D7C0B1 /* GridLayoutViewController.swift in Sources */,
@@ -392,6 +400,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Compare/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -448,6 +457,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Old/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;

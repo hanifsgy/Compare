@@ -1,10 +1,3 @@
-//
-//  CompositionalLayout.swift
-//  Compare
-//
-//  Created by Muhammad Hanif Sugiyanto on 07/08/24.
-//
-
 import UIKit
 
 enum Section {
@@ -24,7 +17,7 @@ class CompositionalLayout: UIViewController {
     
     var collectionView: UICollectionView!
     private var dataSource: UICollectionViewDiffableDataSource<Section, Item>!
-    private var items: [Item] = Array(1...2000).map { Item(id: $0, value: $0)}
+    private var items: [Item] = Array(1...5_000).map { Item(id: $0, value: $0)}
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +28,8 @@ class CompositionalLayout: UIViewController {
     
     private func setupNavigationBar() {
         let shuffleButton = UIBarButtonItem(title: "Shuffle", style: .plain, target: self, action: #selector(shuffleItems))
-        navigationItem.rightBarButtonItem = shuffleButton
+        let multipleSection = UIBarButtonItem(title: "Sectioned Item", style: .plain, target: self, action: #selector(sectionedItems))
+        navigationItem.rightBarButtonItems = [multipleSection, shuffleButton]
     }
     
     @objc private func shuffleItems() {
@@ -49,6 +43,10 @@ class CompositionalLayout: UIViewController {
 //            dataSource.apply(snapshot, animatingDifferences: true)
 //        }
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+    @objc private func sectionedItems() {
+        self.navigationController?.pushViewController(MultipleSectionCompositionalLayout(), animated: true)
     }
     
     private func setupCollectionView() {
