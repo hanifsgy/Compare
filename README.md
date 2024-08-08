@@ -1,7 +1,6 @@
 #  iOS 14 vs Lower
 
-aim to detect weird performance behavior
-aim to provide more egonomic language behavior
+This repo aims to compare the performance of iOS 14 and lower containing some set of features-research purposes.
 
 ## Base
 - `Compare` target minimum iOS 14
