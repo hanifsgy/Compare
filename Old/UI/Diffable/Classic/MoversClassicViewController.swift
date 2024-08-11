@@ -1,19 +1,7 @@
 import UIKit
 import Shared
-import DifferenceKit
 
-extension Stock: Differentiable {
-    
-    public var differenceIdentifier: String {
-        return stockCode
-    }
-    
-    public func isContentEqual(to source: Stock) -> Bool {
-        return self.price == source.price && self.previousPrice == source.previousPrice
-    }
-}
-
-final class MoversViewController: UIViewController {
+final class MoversNativeViewController: UIViewController {
     private var collectionView: UICollectionView!
     private var stocks: [Stock] = []
     private var timer: Timer?
@@ -24,16 +12,6 @@ final class MoversViewController: UIViewController {
         setupCollectionView()
         loadInitialData()
         startUpdatingPrices()
-        setupNavigationBar()
-    }
-    
-    private func setupNavigationBar() {
-        let nativeButton = UIBarButtonItem(title: "Native", style: .plain, target: self, action: #selector(nativeButton))
-        navigationItem.rightBarButtonItems = [nativeButton]
-    }
-    
-    @objc private func nativeButton() {
-        self.navigationController?.pushViewController(MoversNativeViewController(), animated: true)
     }
     
     private func setupCollectionView() {
@@ -84,13 +62,26 @@ final class MoversViewController: UIViewController {
                                      previousPrice: stock.price)
             updatedStocks.append(updatedStock)
         }
+        
+        let oldSortedStocks = oldStocks.sorted { $0.stockCode < $1.stockCode }
         stocks = updatedStocks
         sortStocks()
+        let newSortedStocks = stocks.sorted { $0.stockCode < $1.stockCode }
         
-        let changeset = StagedChangeset(source: oldStocks, target: stocks)
-        collectionView.reload(using: changeset) { [weak self] _ in
+        collectionView.performBatchUpdates({
+            for (index, newStock) in newSortedStocks.enumerated() {
+                if let oldIndex = oldSortedStocks.firstIndex(where: { $0.stockCode == newStock.stockCode }),
+                   let newIndex = stocks.firstIndex(where: { $0.stockCode == newStock.stockCode }) {
+                    if oldIndex != index {
+                        collectionView.moveItem(at: IndexPath(item: oldIndex, section: 0),
+                                                to: IndexPath(item: newIndex, section: 0))
+                    }
+                    collectionView.reloadItems(at: [IndexPath(item: newIndex, section: 0)])
+                }
+            }
+        }, completion: { [weak self] _ in
             self?.animatePriceChanges()
-        }
+        })
     }
     
     private func animatePriceChanges() {
@@ -107,9 +98,10 @@ final class MoversViewController: UIViewController {
             return sortAscending ? change1 < change2 : change1 > change2
         }
     }
+    
 }
 
-extension MoversViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MoversNativeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return stocks.count
     }
@@ -132,7 +124,7 @@ extension MoversViewController: UICollectionViewDataSource, UICollectionViewDele
     }
 }
 
-extension MoversViewController: SectionHeaderViewDelegate {
+extension MoversNativeViewController: SectionHeaderViewDelegate {
     func didTapSortButton() {
         sortAscending.toggle()
         sortStocks()

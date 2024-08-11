@@ -81,13 +81,7 @@ final class MoversViewController: UIViewController {
     }
     
     private func loadInitialData() {
-        stocks = [
-            Stock(companyName: "Apple", stockCode: "AAPL", price: 150.0, previousPrice: 149.0),
-            Stock(companyName: "Google", stockCode: "GOOGL", price: 2800.0, previousPrice: 2795.0),
-            Stock(companyName: "Microsoft", stockCode: "MSFT", price: 300.0, previousPrice: 301.0),
-            Stock(companyName: "Amazon", stockCode: "AMZN", price: 3300.0, previousPrice: 3290.0),
-            Stock(companyName: "Facebook", stockCode: "FB", price: 330.0, previousPrice: 332.0)
-        ]
+        stocks = stockDemo()
         
         updateSnapshot()
     }
