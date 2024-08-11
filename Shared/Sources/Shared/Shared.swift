@@ -22,7 +22,7 @@ public enum Page: String, CaseIterable {
 }
 
 /// Stock Data
-public struct Stock: Hashable {
+public struct Stock: Hashable, Codable {
     public let id = UUID()
     public let companyName: String
     public let stockCode: String
@@ -254,5 +254,73 @@ public final class SectionHeaderView: UICollectionReusableView {
     
     @objc private func sortButtonTapped() {
         delegate?.didTapSortButton()
+    }
+}
+
+// MARK: - Network Engine
+@available(iOS 13.0, *)
+public class StockNetworkEngine: NSObject, URLSessionWebSocketDelegate {
+    public static let shared = StockNetworkEngine()
+    
+    private var webSocket: URLSessionWebSocketTask?
+    private var session: URLSession!
+    
+    public var onStocksUpdate: (([Stock]) -> Void)?
+    
+    private override init() {
+        super.init()
+        session = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
+    }
+    
+    public func connect() {
+        guard let url = URL(string: "ws://127.0.0.1:8080/stocks") else { return }
+        webSocket = session.webSocketTask(with: url)
+        webSocket?.resume()
+        receiveMessage()
+    }
+    
+    public func disconnect() {
+        webSocket?.cancel(with: .goingAway, reason: nil)
+    }
+    
+    private func receiveMessage() {
+        webSocket?.receive { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("Error receiving message: \(error)")
+            case .success(let message):
+                switch message {
+                case .data(let data):
+                    self?.handleReceivedData(data)
+                case .string(let string):
+                    if let data = string.data(using: .utf8) {
+                        self?.handleReceivedData(data)
+                    }
+                @unknown default:
+                    break
+                }
+            }
+            
+            self?.receiveMessage()
+        }
+    }
+    
+    private func handleReceivedData(_ data: Data) {
+        do {
+            let stocks = try JSONDecoder().decode([Stock].self, from: data)
+            DispatchQueue.main.async {
+                self.onStocksUpdate?(stocks)
+            }
+        } catch {
+            print("Error decoding stocks: \(error)")
+        }
+    }
+    
+    public func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didOpenWithProtocol protocol: String?) {
+        print("WebSocket connected")
+    }
+    
+    public func urlSession(_ session: URLSession, webSocketTask: URLSessionWebSocketTask, didCloseWith closeCode: URLSessionWebSocketTask.CloseCode, reason: Data?) {
+        print("WebSocket disconnected")
     }
 }

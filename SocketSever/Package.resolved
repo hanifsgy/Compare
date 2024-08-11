@@ -1,5 +1,5 @@
 {
-  "originHash" : "4ac105900f9db386714f2c93eaa1924a29d6540a06ad7605a674791ce4984217",
+  "originHash" : "9f2a8ef62f6d3847ec28aca0576175d2841c06a1aa638ef447c65c51c52fabdb",
   "pins" : [
     {
       "identity" : "async-http-client",
@@ -26,15 +26,6 @@
       "state" : {
         "revision" : "9f7932f22ab6f64aafadc14491e694179b7d0f6f",
         "version" : "4.14.3"
-      }
-    },
-    {
-      "identity" : "differencekit",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/ra1028/DifferenceKit.git",
-      "state" : {
-        "revision" : "073b9671ce2b9b5b96398611427a1f929927e428",
-        "version" : "1.3.0"
       }
     },
     {

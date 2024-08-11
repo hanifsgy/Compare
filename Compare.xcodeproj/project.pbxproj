@@ -51,6 +51,7 @@
 		02F3779F2C69032400D7C0B1 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Shared; sourceTree = "<group>"; };
 		02F377A52C6909FD00D7C0B1 /* MoversOldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoversOldViewController.swift; sourceTree = "<group>"; };
 		02F377A82C690CC800D7C0B1 /* MoversClassicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoversClassicViewController.swift; sourceTree = "<group>"; };
+		02F377AC2C69146C00D7C0B1 /* SocketSever */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = SocketSever; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +78,7 @@
 		02F3774D2C63C37E00D7C0B1 = {
 			isa = PBXGroup;
 			children = (
+				02F377AC2C69146C00D7C0B1 /* SocketSever */,
 				02F3779F2C69032400D7C0B1 /* Shared */,
 				02F377942C63D3D600D7C0B1 /* README.md */,
 				02F377582C63C37E00D7C0B1 /* Compare */,

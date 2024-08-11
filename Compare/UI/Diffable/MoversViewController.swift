@@ -17,7 +17,15 @@ final class MoversViewController: UIViewController {
         setupCollectionView()
         setupDataSource()
         loadInitialData()
-        startUpdatingPrices()
+//        startUpdatingPrices()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        StockNetworkEngine.shared.connect()
+        StockNetworkEngine.shared.onStocksUpdate = { [weak self] stocks in
+            self?.updatePrices()
+        }
     }
     
     private func setupCollectionView() {
@@ -113,6 +121,29 @@ final class MoversViewController: UIViewController {
             updatedStocks.append(updatedStock)
         }
         stocks = updatedStocks
+        sortStocks()
+        updateSnapshot()
+        
+        // Animate color changes
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.animatePriceChanges()
+        }
+    }
+    
+    private func updateStock(stocks: [Stock]) {
+        var updatedStocks: [Stock] = []
+        for stock in stocks {
+            let randomPercentage = Double.random(in: -3...3) / 100
+            let priceChange = stock.price * randomPercentage
+            let newPrice = stock.price + priceChange
+            let roundedNewPrice = (newPrice * 100).rounded() / 100
+            let updatedStock = Stock(companyName: stock.companyName,
+                                     stockCode: stock.stockCode,
+                                     price: roundedNewPrice,
+                                     previousPrice: stock.price)
+            updatedStocks.append(updatedStock)
+        }
+        self.stocks = updatedStocks
         sortStocks()
         updateSnapshot()
         

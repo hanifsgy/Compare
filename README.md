@@ -15,3 +15,10 @@ This repo aims to compare the performance of iOS 14 and lower containing some se
 
 **References**
 - https://github.com/alexpaul/Compositional-Layout
+
+## Socket
+A demo to mocking a local socket server, using vapor to simulate heavily data changes. To aim measurements performance diffable data sources vs old collection view.
+```md 
+cd SocketServer
+swift run 
+```
