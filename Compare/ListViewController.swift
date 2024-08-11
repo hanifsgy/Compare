@@ -2,6 +2,7 @@ import UIKit
 
 enum Page: String, CaseIterable {
     case compositionalLayout
+    case features
     case structuredConcurrency
     case diffing
     
@@ -9,6 +10,8 @@ enum Page: String, CaseIterable {
         switch self {
         case .compositionalLayout:
             "UI - Compositional Layout - Diffing"
+        case .features:
+            "Movers"
         case .structuredConcurrency:
             "Structured Concurrency Demo"
         case .diffing:
@@ -46,6 +49,8 @@ final class ListViewController: UITableViewController {
         switch Page(rawValue: page) {
         case .compositionalLayout:
             self.navigationController?.pushViewController(CompositionalLayout(), animated: true)
+        case .features:
+            self.navigationController?.pushViewController(MoversViewController(), animated: true)
         case .diffing: break
         default: break
         }

@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,9 @@
 		02F377932C63CD3A00D7C0B1 /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 02F377922C63CD3A00D7C0B1 /* DifferenceKit */; };
 		02F377962C64745C00D7C0B1 /* MultipleSectionGridViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F377952C64745C00D7C0B1 /* MultipleSectionGridViewController.swift */; };
 		02F377982C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F377972C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift */; };
+		02F3779D2C68FFA500D7C0B1 /* MoversViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3779C2C68FFA500D7C0B1 /* MoversViewController.swift */; };
+		02F377A22C69034500D7C0B1 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 02F377A12C69034500D7C0B1 /* Shared */; };
+		02F377A42C69034F00D7C0B1 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 02F377A32C69034F00D7C0B1 /* Shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +45,8 @@
 		02F377942C63D3D600D7C0B1 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		02F377952C64745C00D7C0B1 /* MultipleSectionGridViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSectionGridViewController.swift; sourceTree = "<group>"; };
 		02F377972C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSectionCompositionalLayout.swift; sourceTree = "<group>"; };
+		02F3779C2C68FFA500D7C0B1 /* MoversViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoversViewController.swift; sourceTree = "<group>"; };
+		02F3779F2C69032400D7C0B1 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Shared; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02F377A22C69034500D7C0B1 /* Shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,6 +63,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F377932C63CD3A00D7C0B1 /* DifferenceKit in Frameworks */,
+				02F377A42C69034F00D7C0B1 /* Shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +73,7 @@
 		02F3774D2C63C37E00D7C0B1 = {
 			isa = PBXGroup;
 			children = (
+				02F3779F2C69032400D7C0B1 /* Shared */,
 				02F377942C63D3D600D7C0B1 /* README.md */,
 				02F377582C63C37E00D7C0B1 /* Compare */,
 				02F377722C63C3FA00D7C0B1 /* Old */,
@@ -112,6 +120,7 @@
 		02F377852C63C49B00D7C0B1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				02F377992C68FE6E00D7C0B1 /* Diffable */,
 				02F377862C63C4B400D7C0B1 /* CompositionalLayout.swift */,
 				02F377972C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift */,
 			);
@@ -121,10 +130,26 @@
 		02F3778E2C63CC1200D7C0B1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				02F3779E2C6902B600D7C0B1 /* Diffable */,
 				02F3778F2C63CC3C00D7C0B1 /* GridLayoutViewController.swift */,
 				02F377952C64745C00D7C0B1 /* MultipleSectionGridViewController.swift */,
 			);
 			path = UI;
+			sourceTree = "<group>";
+		};
+		02F377992C68FE6E00D7C0B1 /* Diffable */ = {
+			isa = PBXGroup;
+			children = (
+				02F3779C2C68FFA500D7C0B1 /* MoversViewController.swift */,
+			);
+			path = Diffable;
+			sourceTree = "<group>";
+		};
+		02F3779E2C6902B600D7C0B1 /* Diffable */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Diffable;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,6 +168,9 @@
 			dependencies = (
 			);
 			name = Compare;
+			packageProductDependencies = (
+				02F377A12C69034500D7C0B1 /* Shared */,
+			);
 			productName = Compare;
 			productReference = 02F377562C63C37E00D7C0B1 /* Compare.app */;
 			productType = "com.apple.product-type.application";
@@ -162,6 +190,7 @@
 			name = Old;
 			packageProductDependencies = (
 				02F377922C63CD3A00D7C0B1 /* DifferenceKit */,
+				02F377A32C69034F00D7C0B1 /* Shared */,
 			);
 			productName = Old;
 			productReference = 02F377712C63C3FA00D7C0B1 /* Old.app */;
@@ -196,6 +225,7 @@
 			mainGroup = 02F3774D2C63C37E00D7C0B1;
 			packageReferences = (
 				02F377912C63CD3A00D7C0B1 /* XCRemoteSwiftPackageReference "DifferenceKit" */,
+				02F377A02C69034500D7C0B1 /* XCLocalSwiftPackageReference "Shared" */,
 			);
 			productRefGroup = 02F377572C63C37E00D7C0B1 /* Products */;
 			projectDirPath = "";
@@ -233,6 +263,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02F3779D2C68FFA500D7C0B1 /* MoversViewController.swift in Sources */,
 				02F3775A2C63C37E00D7C0B1 /* AppDelegate.swift in Sources */,
 				02F377982C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift in Sources */,
 				02F3775C2C63C37E00D7C0B1 /* SceneDelegate.swift in Sources */,
@@ -537,6 +568,13 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		02F377A02C69034500D7C0B1 /* XCLocalSwiftPackageReference "Shared" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Shared;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCRemoteSwiftPackageReference section */
 		02F377912C63CD3A00D7C0B1 /* XCRemoteSwiftPackageReference "DifferenceKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -553,6 +591,14 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 02F377912C63CD3A00D7C0B1 /* XCRemoteSwiftPackageReference "DifferenceKit" */;
 			productName = DifferenceKit;
+		};
+		02F377A12C69034500D7C0B1 /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
+		};
+		02F377A32C69034F00D7C0B1 /* Shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Shared;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
