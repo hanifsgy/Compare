@@ -1,24 +1,5 @@
 import UIKit
-
-enum Page: String, CaseIterable {
-    case compositionalLayout
-    case features
-    case structuredConcurrency
-    case diffing
-    
-    var title: String {
-        switch self {
-        case .compositionalLayout:
-            "UI - Compositional Layout - Diffing"
-        case .features:
-            "Movers"
-        case .structuredConcurrency:
-            "Structured Concurrency Demo"
-        case .diffing:
-            "Diffing on TableView"
-        }
-    }
-}
+import Shared
 
 final class ListViewController: UITableViewController {
     

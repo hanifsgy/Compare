@@ -24,6 +24,7 @@
 		02F3779D2C68FFA500D7C0B1 /* MoversViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3779C2C68FFA500D7C0B1 /* MoversViewController.swift */; };
 		02F377A22C69034500D7C0B1 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 02F377A12C69034500D7C0B1 /* Shared */; };
 		02F377A42C69034F00D7C0B1 /* Shared in Frameworks */ = {isa = PBXBuildFile; productRef = 02F377A32C69034F00D7C0B1 /* Shared */; };
+		02F377A62C6909FD00D7C0B1 /* MoversOldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F377A52C6909FD00D7C0B1 /* MoversOldViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		02F377972C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSectionCompositionalLayout.swift; sourceTree = "<group>"; };
 		02F3779C2C68FFA500D7C0B1 /* MoversViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoversViewController.swift; sourceTree = "<group>"; };
 		02F3779F2C69032400D7C0B1 /* Shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = Shared; sourceTree = "<group>"; };
+		02F377A52C6909FD00D7C0B1 /* MoversOldViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoversOldViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 		02F3779E2C6902B600D7C0B1 /* Diffable */ = {
 			isa = PBXGroup;
 			children = (
+				02F377A52C6909FD00D7C0B1 /* MoversOldViewController.swift */,
 			);
 			path = Diffable;
 			sourceTree = "<group>";
@@ -277,6 +280,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F377962C64745C00D7C0B1 /* MultipleSectionGridViewController.swift in Sources */,
+				02F377A62C6909FD00D7C0B1 /* MoversOldViewController.swift in Sources */,
 				02F377742C63C3FA00D7C0B1 /* AppDelegate.swift in Sources */,
 				02F3778B2C63CAD500D7C0B1 /* ListPageController.swift in Sources */,
 				02F377902C63CC3C00D7C0B1 /* GridLayoutViewController.swift in Sources */,

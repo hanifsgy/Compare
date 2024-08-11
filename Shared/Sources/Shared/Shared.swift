@@ -1,5 +1,26 @@
 import UIKit
 
+// MARK: - Page Options
+public enum Page: String, CaseIterable {
+    case compositionalLayout
+    case features
+    case structuredConcurrency
+    case diffing
+    
+    public var title: String {
+        switch self {
+        case .compositionalLayout:
+            "UI - Compositional Layout - Diffing"
+        case .features:
+            "Movers"
+        case .structuredConcurrency:
+            "Structured Concurrency Demo"
+        case .diffing:
+            "Diffing on TableView"
+        }
+    }
+}
+
 /// Stock Data
 public struct Stock: Hashable {
     public let id = UUID()

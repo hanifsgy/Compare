@@ -1,21 +1,5 @@
 import UIKit
-
-enum Page: String, CaseIterable {
-    case gridCollectionLayout
-    case structuredConcurrency
-    case diffing
-    
-    var title: String {
-        switch self {
-        case .gridCollectionLayout:
-            "UI - Grid Collection Layout - Diffing"
-        case .structuredConcurrency:
-            "Structured Concurrency Demo"
-        case .diffing:
-            "Diffing on TableView"
-        }
-    }
-}
+import Shared
 
 final class ListPageController: UITableViewController {
     
@@ -44,8 +28,10 @@ final class ListPageController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let page = data[indexPath.row].rawValue
         switch Page(rawValue: page) {
-        case .gridCollectionLayout:
+        case .compositionalLayout:
             self.navigationController?.pushViewController(GridLayoutViewController(), animated: true)
+        case .features:
+            self.navigationController?.pushViewController(MoversViewController(), animated: true)
         case .diffing: break
         default: break
         }
