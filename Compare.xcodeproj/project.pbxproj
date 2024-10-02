@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		020BEAB52CAD8F240079995D /* HeaderFooterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020BEAB42CAD8EFA0079995D /* HeaderFooterViewController.swift */; };
+		020BEAB72CAD92C40079995D /* WifiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020BEAB62CAD92BF0079995D /* WifiController.swift */; };
 		02F3775A2C63C37E00D7C0B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F377592C63C37E00D7C0B1 /* AppDelegate.swift */; };
 		02F3775C2C63C37E00D7C0B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3775B2C63C37E00D7C0B1 /* SceneDelegate.swift */; };
 		02F377632C63C38100D7C0B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F377622C63C38100D7C0B1 /* Assets.xcassets */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		020BEAB42CAD8EFA0079995D /* HeaderFooterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderFooterViewController.swift; sourceTree = "<group>"; };
+		020BEAB62CAD92BF0079995D /* WifiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiController.swift; sourceTree = "<group>"; };
 		02F377562C63C37E00D7C0B1 /* Compare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F377592C63C37E00D7C0B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02F3775B2C63C37E00D7C0B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,6 +158,8 @@
 		02F3779E2C6902B600D7C0B1 /* Diffable */ = {
 			isa = PBXGroup;
 			children = (
+				020BEAB62CAD92BF0079995D /* WifiController.swift */,
+				020BEAB42CAD8EFA0079995D /* HeaderFooterViewController.swift */,
 				02F377A72C690C5600D7C0B1 /* Classic */,
 				02F377A52C6909FD00D7C0B1 /* MoversOldViewController.swift */,
 			);
@@ -294,8 +300,10 @@
 			files = (
 				02F377962C64745C00D7C0B1 /* MultipleSectionGridViewController.swift in Sources */,
 				02F377A62C6909FD00D7C0B1 /* MoversOldViewController.swift in Sources */,
+				020BEAB72CAD92C40079995D /* WifiController.swift in Sources */,
 				02F377742C63C3FA00D7C0B1 /* AppDelegate.swift in Sources */,
 				02F3778B2C63CAD500D7C0B1 /* ListPageController.swift in Sources */,
+				020BEAB52CAD8F240079995D /* HeaderFooterViewController.swift in Sources */,
 				02F377902C63CC3C00D7C0B1 /* GridLayoutViewController.swift in Sources */,
 				02F377A92C690CC800D7C0B1 /* MoversClassicViewController.swift in Sources */,
 			);

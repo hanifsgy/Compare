@@ -6,6 +6,7 @@ public enum Page: String, CaseIterable {
     case features
     case structuredConcurrency
     case diffing
+    case diffing2
     
     public var title: String {
         switch self {
@@ -16,7 +17,9 @@ public enum Page: String, CaseIterable {
         case .structuredConcurrency:
             "Structured Concurrency Demo"
         case .diffing:
-            "Diffing on TableView"
+            "Diffing on TableView 1"
+        case .diffing2:
+            "Diffing on TableView 2"
         }
     }
 }

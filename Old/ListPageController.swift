@@ -32,7 +32,14 @@ final class ListPageController: UITableViewController {
             self.navigationController?.pushViewController(GridLayoutViewController(), animated: true)
         case .features:
             self.navigationController?.pushViewController(MoversViewController(), animated: true)
-        case .diffing: break
+        case .diffing:
+            self.navigationController?.pushViewController(HeaderFooterViewController(), animated: true)
+        case .diffing2:
+            let wifiController = WiFiController { controller in
+                // Handle updates here if needed
+                print("WiFi networks updated")
+            }
+            self.navigationController?.pushViewController(wifiController, animated: true)
         default: break
         }
         
