@@ -32,7 +32,8 @@ final class ListViewController: UITableViewController {
             self.navigationController?.pushViewController(CompositionalLayout(), animated: true)
         case .features:
             self.navigationController?.pushViewController(MoversViewController(), animated: true)
-        case .diffing: break
+        case .diffing:
+            self.navigationController?.pushViewController(WifiSettingsViewController(), animated: true)
         default: break
         }
         

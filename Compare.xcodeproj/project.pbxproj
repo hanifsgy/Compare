@@ -12,6 +12,7 @@
 		020BEAEA2CAE69A80079995D /* CompareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020BEAE82CAE69A80079995D /* CompareTests.swift */; };
 		020BEAF32CAE6DB80079995D /* DifferenceKit in Frameworks */ = {isa = PBXBuildFile; productRef = 020BEAF22CAE6DB80079995D /* DifferenceKit */; };
 		020BEB032CAE6E170079995D /* OldTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 020BEB012CAE6E170079995D /* OldTests.swift */; };
+		022336822CAEE50400273824 /* WifiController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 022336812CAEE4FD00273824 /* WifiController.swift */; };
 		02F3775A2C63C37E00D7C0B1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F377592C63C37E00D7C0B1 /* AppDelegate.swift */; };
 		02F3775C2C63C37E00D7C0B1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02F3775B2C63C37E00D7C0B1 /* SceneDelegate.swift */; };
 		02F377632C63C38100D7C0B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02F377622C63C38100D7C0B1 /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		020BEAE82CAE69A80079995D /* CompareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompareTests.swift; sourceTree = "<group>"; };
 		020BEAF82CAE6E130079995D /* OldTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OldTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		020BEB012CAE6E170079995D /* OldTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OldTests.swift; sourceTree = "<group>"; };
+		022336812CAEE4FD00273824 /* WifiController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiController.swift; sourceTree = "<group>"; };
 		02F377562C63C37E00D7C0B1 /* Compare.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Compare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02F377592C63C37E00D7C0B1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02F3775B2C63C37E00D7C0B1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 		02F377992C68FE6E00D7C0B1 /* Diffable */ = {
 			isa = PBXGroup;
 			children = (
+				022336812CAEE4FD00273824 /* WifiController.swift */,
 				02F3779C2C68FFA500D7C0B1 /* MoversViewController.swift */,
 			);
 			path = Diffable;
@@ -434,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02F3779D2C68FFA500D7C0B1 /* MoversViewController.swift in Sources */,
+				022336822CAEE50400273824 /* WifiController.swift in Sources */,
 				02F3775A2C63C37E00D7C0B1 /* AppDelegate.swift in Sources */,
 				02F377982C64795600D7C0B1 /* MultipleSectionCompositionalLayout.swift in Sources */,
 				02F3775C2C63C37E00D7C0B1 /* SceneDelegate.swift in Sources */,

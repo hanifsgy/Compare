@@ -5,23 +5,33 @@ import DifferenceKit
 
 struct WiFiNetwork: Differentiable {
     let id: UUID
-    let name: String
+    var name: String
     var signalStrength: Int
+    var connected: Bool
     
     var differenceIdentifier: UUID {
         return id
     }
     
     func isContentEqual(to source: WiFiNetwork) -> Bool {
-        return name == source.name && signalStrength == source.signalStrength
+        return name == source.name && signalStrength == source.signalStrength && connected == source.connected
     }
 }
 
-typealias WiFiSection = ArraySection<String, WiFiNetwork>
+enum WiFiSectionType: String, Differentiable {
+    case settings = "SETTINGS"
+    case networks = "NETWORKS"
+    
+    var differenceIdentifier: String {
+        return rawValue
+    }
+}
+
+typealias WiFiSection = ArraySection<WiFiSectionType, WiFiNetwork>
 
 typealias UpdateHandler = (WiFiController) -> Void
 
-class WiFiController: UIViewController {
+final class WiFiController: UIViewController {
     
     private var tableView: UITableView!
     private var sections: [WiFiSection]
@@ -36,8 +46,11 @@ class WiFiController: UIViewController {
     init(updateHandler: @escaping UpdateHandler) {
         self.updateHandler = updateHandler
         self.sections = [
-            ArraySection(model: "SETTINGS", elements: [WiFiNetwork(id: UUID(), name: "Wi-Fi", signalStrength: 0)]),
-            ArraySection(model: "NETWORKS", elements: [])
+            ArraySection(model: .settings, elements: [
+                WiFiNetwork(id: UUID(), name: "Wi-Fi", signalStrength: 0, connected: false),
+                WiFiNetwork(id: UUID(), name: "aaaaa", signalStrength: 0, connected: true)
+            ]),
+            ArraySection(model: .networks, elements: [])
         ]
         super.init(nibName: nil, bundle: nil)
     }
@@ -82,7 +95,7 @@ class WiFiController: UIViewController {
         var updatedNetworks = sections[1].elements
         
         if updatedNetworks.isEmpty || Bool.random() {
-            let newNetwork = WiFiNetwork(id: UUID(), name: randomNetworkName(), signalStrength: Int.random(in: 1...3))
+            let newNetwork = WiFiNetwork(id: UUID(), name: randomNetworkName(), signalStrength: Int.random(in: 1...3), connected: false)
             updatedNetworks.append(newNetwork)
         } else if Bool.random() && !updatedNetworks.isEmpty {
             updatedNetworks.remove(at: Int.random(in: 0..<updatedNetworks.count))
@@ -94,10 +107,22 @@ class WiFiController: UIViewController {
             return updatedNetwork
         }
         
-        let newSections = [
-            sections[0],
-            ArraySection(model: "NETWORKS", elements: updatedNetworks)
-        ]
+        let connectedNetwork = updatedNetworks.randomElement()
+        updatedNetworks = updatedNetworks.map { network in
+            var updatedNetwork = network
+            updatedNetwork.connected = (network.id == connectedNetwork?.id)
+            return updatedNetwork
+        }
+        
+        var newSections = sections
+        newSections[1] = ArraySection(model: .networks, elements: updatedNetworks)
+        
+//        if let connectedNetwork = connectedNetwork {
+//            newSections[0].elements[1].name = connectedNetwork.name
+//        } else {
+//            newSections[0].elements[1].name = ""
+//        }
+        
         updateSections(newSections)
     }
     
@@ -115,10 +140,8 @@ class WiFiController: UIViewController {
     }
     
     @objc private func wifiSwitchChanged(_ sender: UISwitch) {
-        let newSections = [
-            sections[0],
-            ArraySection(model: "NETWORKS", elements: sender.isOn ? sections[1].elements : [])
-        ]
+        var newSections = sections
+        newSections[1] = ArraySection(model: .networks, elements: sender.isOn ? sections[1].elements : [])
         updateSections(newSections)
         
         if sender.isOn {
@@ -145,14 +168,23 @@ extension WiFiController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "WiFiCell", for: indexPath)
         
-        if indexPath.section == 0 && indexPath.row == 0 {
-            cell.textLabel?.text = "Wi-Fi"
-            cell.accessoryView = toggleSwitch
+        let network = sections[indexPath.section].elements[indexPath.row]
+        
+        if indexPath.section == 0 {
+            if indexPath.row == 0 {
+                cell.textLabel?.text = "Wi-Fi"
+                cell.accessoryView = toggleSwitch
+                cell.detailTextLabel?.text = nil
+            } else {
+                cell.textLabel?.text = network.name.isEmpty ? "Not Connected" : network.name
+                cell.accessoryView = nil
+                cell.accessoryType = .none
+                cell.detailTextLabel?.text = nil
+            }
         } else {
-            let network = sections[indexPath.section].elements[indexPath.row]
             cell.textLabel?.text = network.name
             cell.detailTextLabel?.text = String(repeating: "•", count: network.signalStrength)
-            cell.accessoryType = .disclosureIndicator
+            cell.accessoryType = .detailDisclosureButton
             cell.accessoryView = nil
         }
         
@@ -160,6 +192,6 @@ extension WiFiController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].model
+        return sections[section].model.rawValue
     }
 }
