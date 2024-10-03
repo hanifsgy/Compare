@@ -1,4 +1,4 @@
-/// Take from example header footer example
+/// Take from example header footer DifferenceKit
 import UIKit
 import DifferenceKit
 
